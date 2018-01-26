@@ -66,3 +66,14 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
+
+object TestList {
+
+  import List._
+
+  // test implementation of `tail`
+  def main(args: Array[String]): Unit = {
+    println("Expected: %s".format(List(2, 3, 4, 5)))
+    println("Actual:   %s".format(tail(List(1, 2, 3, 4, 5))))
+  }
+}
