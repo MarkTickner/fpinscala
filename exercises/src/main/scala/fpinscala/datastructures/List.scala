@@ -51,7 +51,11 @@ object List { // `List` companion object. Contains functions for creating and wo
 
 
   // Exercise 3.2: Implement a function for removing the first element of a `List`
-  def tail[A](l: List[A]): List[A] = ???
+  def tail[A](l: List[A]): List[A] =
+    l match {
+      case Nil => Nil
+      case Cons(_, x) => x
+    }
 
   // Exercise 3.3: Implement a function for replacing the first element of a `List` with a different value
   def setHead[A](l: List[A], h: A): List[A] = ???
