@@ -83,7 +83,11 @@ object List { // `List` companion object. Contains functions for creating and wo
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = ???
 
   // Exercise 3.6: Implement a function that returns a `List` consisting of all but the last element of a `List`
-  def init[A](l: List[A]): List[A] = ???
+  def init[A](l: List[A]): List[A] = l match {
+    case Nil => Nil
+    case Cons(_, Nil) => Nil
+    case Cons(h, t) => Cons(h, init(t))
+  }
 
   // Exercise 3.9: Compute the length of a list using `foldRight`
   def length[A](l: List[A]): Int = ???
