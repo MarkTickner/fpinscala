@@ -66,7 +66,18 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   // Exercise 3.4: Generalise `tail` to a function which removes the first `n` elements from a list
-  def drop[A](l: List[A], n: Int): List[A] = ???
+  def drop[A](l: List[A], n: Int): List[A] = {
+    @annotation.tailrec
+    def loop(i: Int, l: List[A]): List[A] = {
+      if (n <= i) l
+      else l match {
+        case Nil => Nil
+        case Cons(_, t) => loop(i + 1, t)
+      }
+    }
+
+    loop(0, l)
+  }
 
   // Exercise 3.5: Implement a function which removes elements from the `List` prefix as long as they match a predicate
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = ???
