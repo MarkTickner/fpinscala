@@ -80,17 +80,10 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   // Exercise 3.5: Implement a function which removes elements from the `List` prefix as long as they match a predicate
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = {
-    @annotation.tailrec
-    def loop(l: List[A]): List[A] = {
-      l match {
-        case Nil => Nil
-        case Cons(h, t) if f(h) => loop(t)
-        case _ => l
-      }
-    }
-
-    loop(l)
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Nil => Nil
+    case Cons(h, t) if f(h) => dropWhile(t, f)
+    case _ => l
   }
 
   // Exercise 3.6: Implement a function that returns a `List` consisting of all but the last element of a `List`
