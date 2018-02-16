@@ -94,7 +94,8 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   // Exercise 3.9: Compute the length of a list using `foldRight`
-  def length[A](l: List[A]): Int = ???
+  def length[A](l: List[A]): Int =
+    foldRight(l, 0)((_, y) => y + 1)
 
   // Exercise 3.10: Write a general list-recursive function that is tail-recursive
   // `l` is the list, `z` is initial value, `f` is the combining operation
