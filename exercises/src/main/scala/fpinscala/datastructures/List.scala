@@ -80,6 +80,7 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   // Exercise 3.5: Implement a function which removes elements from the `List` prefix as long as they match a predicate
+  @annotation.tailrec
   def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
     case Nil => Nil
     case Cons(h, t) if f(h) => dropWhile(t, f)
@@ -106,6 +107,14 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   // Exercise 3.11: Write `sum`, `product`, and a function to compute the length of a list using `foldLeft`
+  def sum3(ns: List[Int]): Int =
+    foldLeft(ns, 0)(_ + _)
+
+  def product3(ns: List[Double]): Double =
+    foldLeft(ns, 1.0)(_ * _)
+
+  def length2[A](l: List[A]): Int =
+    foldLeft(l, 0)((y, _) => y + 1)
 
   // Exercise 3.12: Write a function that returns the reverse of a list
 
