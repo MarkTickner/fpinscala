@@ -99,7 +99,11 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   // Exercise 3.10: Write a general list-recursive function that is tail-recursive
   // `l` is the list, `z` is initial value, `f` is the combining operation
-  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = ???
+  @annotation.tailrec
+  def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = l match {
+    case Nil => z
+    case Cons(y, xs) => foldLeft(xs, f(z, y))(f)
+  }
 
   // Exercise 3.11: Write `sum`, `product`, and a function to compute the length of a list using `foldLeft`
 
