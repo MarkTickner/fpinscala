@@ -117,6 +117,8 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldLeft(l, 0)((y, _) => y + 1)
 
   // Exercise 3.12: Write a function that returns the reverse of a list
+  def reverse[A](l: List[A]): List[A] =
+    foldLeft(l, List[A]())((h, t) => Cons(t, h))
 
   // Exercise 3.13: Write `foldLeft` in terms of `foldRight`
 
