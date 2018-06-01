@@ -134,6 +134,11 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(l, List[A]())(appendFoldLeft)
 
   // Exercise 3.16: Write a function that transforms a list of integers by adding 1 to each element
+  def incrementBy1FoldLeft(l: List[Int]): List[Int] =
+    foldLeft(reverse(l), List[Int]())((b, a) => Cons(a + 1, b))
+
+  def incrementBy1FoldRight(l: List[Int]): List[Int] =
+    foldRight(l, List[Int]())((b, a) => Cons(b + 1, a))
 
   // Exercise 3.17: Write a function that turns each value in a `List[Double]` into a `String`
 
