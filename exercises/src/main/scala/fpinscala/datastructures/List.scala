@@ -146,7 +146,8 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   // Exercise 3.18: Write a function `map` that generalizes modifying each element in a list while maintaining the
   // structure of the list
-  def map[A,B](l: List[A])(f: A => B): List[B] = ???
+  def map[A, B](l: List[A])(f: A => B): List[B] =
+    foldRight(l, List[B]())((h, t) => Cons(f(h), t))
 
   // Exercise 3.19: Write a function `filter` that removes elements from a list unless they satisfy a given predicate
 
