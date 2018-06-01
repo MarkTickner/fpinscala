@@ -130,6 +130,8 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(a1, a2)(Cons(_, _))
 
   // Exercise 3.15: Write a function that concatenates a list of lists into a single list
+  def concat[A](l: List[List[A]]): List[A] =
+    foldRight(l, List[A]())(appendFoldLeft)
 
   // Exercise 3.16: Write a function that transforms a list of integers by adding 1 to each element
 
