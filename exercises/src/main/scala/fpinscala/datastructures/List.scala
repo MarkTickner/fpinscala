@@ -123,6 +123,11 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 3.13: Write `foldLeft` in terms of `foldRight`
 
   // Exercise 3.14: Implement `append` in terms of either `foldLeft` or `foldRight`
+  def appendFoldLeft[A](a1: List[A], a2: List[A]): List[A] =
+    foldLeft(reverse(a1), a2)((a, b) => Cons(b, a))
+
+  def appendFoldRight[A](a1: List[A], a2: List[A]): List[A] =
+    foldRight(a1, a2)(Cons(_, _))
 
   // Exercise 3.15: Write a function that concatenates a list of lists into a single list
 
