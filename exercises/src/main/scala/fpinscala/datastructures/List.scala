@@ -141,6 +141,8 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(l, List[Int]())((b, a) => Cons(b + 1, a))
 
   // Exercise 3.17: Write a function that turns each value in a `List[Double]` into a `String`
+  def doubleToString(l: List[Double]): List[String] =
+    foldRight(l, List[String]())((h, t) => Cons(h.toString, t))
 
   // Exercise 3.18: Write a function `map` that generalizes modifying each element in a list while maintaining the
   // structure of the list
