@@ -163,6 +163,11 @@ object List { // `List` companion object. Contains functions for creating and wo
   // Exercise 3.22: Write a function that accepts two lists and constructs a new list by adding corresponding elements
 
   // Exercise 3.23: Generalise the function you just wrote so that it's not specific to integers or addition
+  def zipWith[A](l1: List[A], l2: List[A])(f: (A, A) => A): List[A] = (l1, l2) match {
+    case (Nil, _) => Nil
+    case (_, Nil) => Nil
+    case (Cons(h1, t1), Cons(h2, t2)) => Cons(f(h1, h2), zipWith(t1, t2)(f))
+  }
 
   // Exercise 3.24: Implement `hasSubsequence` for checking whether a `List` contains another `List` as a subsequence
 }
