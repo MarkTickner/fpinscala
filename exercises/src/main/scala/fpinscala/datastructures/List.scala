@@ -150,6 +150,8 @@ object List { // `List` companion object. Contains functions for creating and wo
     foldRight(l, List[B]())((h, t) => Cons(f(h), t))
 
   // Exercise 3.19: Write a function `filter` that removes elements from a list unless they satisfy a given predicate
+  def filter[A](as: List[A])(f: A => Boolean): List[A] =
+    foldRight(as, List[A]())((h, t) => if (f(h)) Cons(h, t) else t)
 
   // Exercise 3.20: Write a function `flatMap` that works like `map` except that the function given will return a list
   // instead of a single result
