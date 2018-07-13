@@ -30,4 +30,20 @@ object Tree {
 
   // Exercise 3.29: Generalize `size`, `maximum`, `depth`, and `map`, writing a new function `fold` that abstracts over
   // their similarities. Reimplement them in terms of this more general function
+  def fold[A, B](tree: Tree[A])(f: A => B)(b: (B, B) => B): B = tree match {
+    case Leaf(v) => f(v)
+    case Branch(l, r) => b(fold(l)(f)(b), fold(r)(f)(b))
+  }
+
+  def sizeFold[A](tree: Tree[A]): Int =
+    fold(tree)(_ => 1)(1 + _ + _)
+
+  def maximumFold(tree: Tree[Int]): Int =
+    fold(tree)(v => v)(_ max _)
+
+  def depthFold[A](tree: Tree[A]): Int =
+    fold(tree)(_ => 0)((l, r) => 1 + (l max r))
+
+  def mapFold[A, B](tree: Tree[A])(f: A => B): Tree[B] =
+    fold(tree)(v => Leaf(f(v)): Tree[B])(Branch(_, _))
 }
