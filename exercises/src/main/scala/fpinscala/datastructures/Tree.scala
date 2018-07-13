@@ -10,6 +10,10 @@ object Tree {
   // Exercise 3.25: Write a function `size` that counts the number of nodes (leaves and branches) in a tree
 
   // Exercise 3.26: Write a function `maximum` that returns the maximum element in a `Tree[Int]`
+  def maximum(tree: Tree[Int]): Int = tree match {
+    case Leaf(v) => v
+    case Branch(l, r) => maximum(l) max maximum(r)
+  }
 
   // Exercise 3.27: Write a function `depth` that returns the maximum path length from the root of a tree to any leaf
 
