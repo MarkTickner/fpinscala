@@ -26,13 +26,10 @@ trait Stream[+A] {
   }
 
   // Exercise 5.2: Write the function `take(n)` for returning the first `n` elements of a `Stream`
-  def take(n: Int): Stream[A] = {
-    def go(s: Stream[A], acc: Int): Stream[A] = s match {
-      case Cons(h, t) if acc <= n => cons(h(), go(t(), acc + 1))
-      case _ => empty
-    }
-
-    go(this, 1)
+  def take(n: Int): Stream[A] = this match {
+    case Cons(h, t) if n > 1 => cons(h(), t().take(n - 1))
+    case Cons(h, _) if n == 1 => cons(h(), empty)
+    case _ => empty
   }
 
   // Exercise 5.2: Write the function `drop(n)` for skipping the first `n` elements of a `Stream`
