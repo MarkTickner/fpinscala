@@ -5,6 +5,10 @@ trait Stream[+A] {
 
   // Exercise 5.1: Write a function to convert a `Stream` into a `List`, which will force its evaluation and let you
   // look at it in the REPL
+  def toList: List[A] = this match {
+    case Cons(h, t) => List(h()) ++ t().toList
+    case _ => List()
+  }
 
   def foldRight[B](z: => B)(f: (A, => B) => B): B = // The arrow `=>` in front of the argument type `B` means that the function `f` takes its second argument by name and may choose not to evaluate it.
     this match {
