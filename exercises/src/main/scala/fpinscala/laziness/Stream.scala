@@ -34,9 +34,8 @@ trait Stream[+A] {
 
   // Exercise 5.2: Write the function `drop(n)` for skipping the first `n` elements of a `Stream`
   def drop(n: Int): Stream[A] = this match {
-    case Cons(h, t) if n == 0 => cons(h(), t())
-    case Cons(_, t) => t().drop(n - 1)
-    case _ => empty
+    case Cons(_, t) if n > 0 => t().drop(n - 1)
+    case _ => this
   }
 
   // Exercise 5.3: Write the function `takeWhile` for returning all starting elements of a `Stream` that match the given
