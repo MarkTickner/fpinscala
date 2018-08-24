@@ -40,7 +40,10 @@ trait Stream[+A] {
 
   // Exercise 5.3: Write the function `takeWhile` for returning all starting elements of a `Stream` that match the given
   // predicate
-  def takeWhile(p: A => Boolean): Stream[A] = ???
+  def takeWhile(p: A => Boolean): Stream[A] = this match {
+    case Cons(h, t) if p(h()) => cons(h(), t().takeWhile(p))
+    case _ => empty
+  }
 
   // Exercise 5.4: Implement `forAll`, which checks that all elements in the `Stream` match a given predicate. Your
   // implementation should terminate the traversal as soon as it encounters a nonmatching value
