@@ -47,7 +47,10 @@ trait Stream[+A] {
 
   // Exercise 5.4: Implement `forAll`, which checks that all elements in the `Stream` match a given predicate. Your
   // implementation should terminate the traversal as soon as it encounters a nonmatching value
-  def forAll(p: A => Boolean): Boolean = ???
+  def forAll(p: A => Boolean): Boolean = this match {
+    case Cons(h, t) => p(h()) && t().forAll(p)
+    case _ => true
+  }
 
   // Exercise 5.5: Use `foldRight` to implement `takeWhile`
 
