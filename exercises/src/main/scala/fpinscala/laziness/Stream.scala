@@ -62,7 +62,8 @@ trait Stream[+A] {
       else empty)
 
   // Exercise 5.6: Use `foldRight` to implement `headOption`
-  def headOption: Option[A] = ???
+  def headOption: Option[A] =
+    foldRight(None: Option[A])((h, _) => Some(h))
 
   // Exercise 5.7: Implement `map`, `filter`, `append` and `flatMap` using `foldRight`. Part of the exercise is writing
   // your own function signatures.
