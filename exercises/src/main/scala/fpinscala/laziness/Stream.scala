@@ -52,6 +52,9 @@ trait Stream[+A] {
     case _ => true
   }
 
+  def forAllFold(p: A => Boolean): Boolean =
+    foldRight(true)((a, b) => p(a) && b)
+
   // Exercise 5.5: Use `foldRight` to implement `takeWhile`
 
   // Exercise 5.6: Use `foldRight` to implement `headOption`
