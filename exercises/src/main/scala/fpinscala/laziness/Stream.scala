@@ -56,6 +56,10 @@ trait Stream[+A] {
     foldRight(true)((a, b) => p(a) && b)
 
   // Exercise 5.5: Use `foldRight` to implement `takeWhile`
+  def takeWhileFold(p: A => Boolean): Stream[A] =
+    foldRight(empty[A])((a, b) =>
+      if (p(a)) cons(a, b)
+      else empty)
 
   // Exercise 5.6: Use `foldRight` to implement `headOption`
   def headOption: Option[A] = ???
