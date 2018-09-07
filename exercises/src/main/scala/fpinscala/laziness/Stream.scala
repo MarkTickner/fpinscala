@@ -112,6 +112,12 @@ object Stream {
     cons(n, from(n + 1))
 
   // Exercise 5.10: Write a function `fibs` that generates the infinite stream of Fibonacci numbers
+  def fibs: Stream[Int] = {
+    def go(prev: Int, curr: Int): Stream[Int] =
+      cons(prev, go(curr, prev + curr))
+
+    go(0, 1)
+  }
 
   // Exercise 5.11: Write a more general stream-building function called `unfold`. It takes an initial state, and a
   // function for producing both the next state and the next value in the generated stream
