@@ -103,6 +103,8 @@ object Stream {
   val ones: Stream[Int] = Stream.cons(1, ones)
 
   // Exercise 5.8: Write a function `constant` to return an infinite `Stream` of a given value
+  def constant[A](a: A): Stream[A] =
+    cons(a, constant(a))
 
   // Exercise 5.9: Write a function that generates an infinite stream of integers, starting from `n`, then `n + 1`,
   // `n + 2`, and so on
