@@ -127,6 +127,8 @@ object Stream {
   }
 
   // Exercise 5.12: Write fibs, from, constant, and ones in terms of unfold
+  def fibsUnfold: Stream[Int] =
+    unfold((0, 1)) { case (n0, n1) => Some(n0, (n1, n0 + n1)) }
 
   // Exercise 5.13: Use `unfold` to implement `map`, `take`, `takeWhile`, `zipWith` and `zipAll`
 
