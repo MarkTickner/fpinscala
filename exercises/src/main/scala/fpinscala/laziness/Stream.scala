@@ -136,6 +136,8 @@ object Stream {
   def constantUnfold[A](a: A): Stream[A] =
     unfold(a)(_ => Some(a, a))
 
+  val onesUnfold: Stream[Int] = unfold(1)(_ => Some(1, 1))
+
   // Exercise 5.13: Use `unfold` to implement `map`, `take`, `takeWhile`, `zipWith` and `zipAll`
 
   // Exercise 5.14: Implement `startsWith` using functions already written
