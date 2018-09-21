@@ -130,6 +130,9 @@ object Stream {
   def fibsUnfold: Stream[Int] =
     unfold((0, 1)) { case (n0, n1) => Some(n0, (n1, n0 + n1)) }
 
+  def fromUnfold(n: Int): Stream[Int] =
+    unfold(n)(nn => Some(nn, nn + 1))
+
   // Exercise 5.13: Use `unfold` to implement `map`, `take`, `takeWhile`, `zipWith` and `zipAll`
 
   // Exercise 5.14: Implement `startsWith` using functions already written
