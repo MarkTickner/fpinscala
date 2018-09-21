@@ -133,6 +133,9 @@ object Stream {
   def fromUnfold(n: Int): Stream[Int] =
     unfold(n)(nn => Some(nn, nn + 1))
 
+  def constantUnfold[A](a: A): Stream[A] =
+    unfold(a)(_ => Some(a, a))
+
   // Exercise 5.13: Use `unfold` to implement `map`, `take`, `takeWhile`, `zipWith` and `zipAll`
 
   // Exercise 5.14: Implement `startsWith` using functions already written
