@@ -69,5 +69,8 @@ object Option {
     sequence(a map (i => Try(i.toInt)))
 
   // Exercise 4.5: Implement this function
-  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = ???
+  def traverse[A, B](a: List[A])(f: A => Option[B]): Option[List[B]] = a match {
+    case Nil => Some(Nil)
+    case h::t => map2(f(h), traverse(t)(f))(_ :: _)
+  }
 }
