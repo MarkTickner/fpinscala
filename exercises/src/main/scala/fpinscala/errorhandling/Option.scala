@@ -60,6 +60,10 @@ object Option {
   def map3[A, B, C, D](a: Option[A], b: Option[B], c: Option[C])(f: (A, B, C) => D): Option[D] =
     a flatMap (aa => b flatMap (bb => c map (cc => f(aa, bb, cc))))
 
+  def Try[A](a: => A): Option[A] =
+    try Some(a)
+    catch { case e: Exception => None }
+
   // Exercise 4.4: Write a function `sequence` that combines a list of `Option`s into one `Option` containing a list of
   // all the `Some` values in the original list. If the original list contains `None` even once, the result of the
   // function should be `None`; otherwise the result should be `Some` with a list of all the values
