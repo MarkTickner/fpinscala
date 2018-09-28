@@ -30,7 +30,11 @@ object RNG {
       (f(a), rng2)
     }
 
-  def nonNegativeInt(rng: RNG): (Int, RNG) = ???
+  // Exercise 6.1: Write a function that uses RNG.nextInt to generate a random integer between `0` and `Int.maxValue`
+  def nonNegativeInt(rng: RNG): (Int, RNG) = {
+    val (int, rng1) = rng.nextInt
+    if (int < 0) (-(int + 1), rng1) else (int, rng1)
+  }
 
   def double(rng: RNG): (Double, RNG) = ???
 
