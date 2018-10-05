@@ -36,7 +36,11 @@ object RNG {
     if (int < 0) (-(int + 1), rng1) else (int, rng1)
   }
 
-  def double(rng: RNG): (Double, RNG) = ???
+  // Exercise 6.2: Write a function to generate a `Double` between `0` and `1`, not including `1`
+  def double(rng: RNG): (Double, RNG) = {
+    val (int, rng1) = nonNegativeInt(rng)
+    (int.toDouble / (Int.MaxValue.toDouble + 1), rng1)
+  }
 
   def intDouble(rng: RNG): ((Int,Double), RNG) = ???
 

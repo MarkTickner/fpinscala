@@ -14,4 +14,12 @@ class StateSpec extends FlatSpec with Matchers {
     actual should be >= expected
   }
 
+  "double" should "generate a `Double` between `0` and `1`" in {
+    val rng = Simple(123)
+    val (actual, _) = RNG.double(rng)
+
+    actual should be > 0d
+    actual should be < 1d
+  }
+
 }
