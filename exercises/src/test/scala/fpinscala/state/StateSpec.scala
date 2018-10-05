@@ -22,4 +22,29 @@ class StateSpec extends FlatSpec with Matchers {
     actual should be < 1d
   }
 
+  "intDouble" should "generate an `(Int, Double)` pair" in {
+    val rng = Simple(123)
+    val ((actualInt, actualDouble), _) = RNG.intDouble(rng)
+
+    actualInt should be > 0
+    actualDouble should be > 0d
+  }
+
+  "doubleInt" should "generate a `(Double, Int)` pair" in {
+    val rng = Simple(123)
+    val ((actualDouble, actualInt), _) = RNG.doubleInt(rng)
+
+    actualDouble should be > 0d
+    actualInt should be > 0
+  }
+
+  "double3" should "generate a `(Double, Double, Double)` tuple" in {
+    val rng = Simple(123)
+    val ((actualDouble1, actualDouble2, actualDouble3), _) = RNG.double3(rng)
+
+    actualDouble1 should be > 0d
+    actualDouble2 should be > 0d
+    actualDouble3 should be > 0d
+  }
+
 }

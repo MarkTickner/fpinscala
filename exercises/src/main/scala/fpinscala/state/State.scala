@@ -42,11 +42,26 @@ object RNG {
     (int.toDouble / (Int.MaxValue.toDouble + 1), rng1)
   }
 
-  def intDouble(rng: RNG): ((Int,Double), RNG) = ???
+  // Exercise 6.3: Write a function to generate an `(Int, Double)` pair
+  def intDouble(rng: RNG): ((Int,Double), RNG) = {
+    val (int, rng1) = nonNegativeInt(rng)
+    val (dbl, rng2) = double(rng1)
+    ((int, dbl), rng2)
+  }
 
-  def doubleInt(rng: RNG): ((Double,Int), RNG) = ???
+  // Write a function to generate a `(Double, Int)` pair
+  def doubleInt(rng: RNG): ((Double,Int), RNG) = {
+    val ((int, dbl), rng1) = intDouble(rng)
+    ((dbl, int), rng1)
+  }
 
-  def double3(rng: RNG): ((Double,Double,Double), RNG) = ???
+  // Write a function to generate a `(Double, Double, Double)` tuple
+  def double3(rng: RNG): ((Double,Double,Double), RNG) = {
+    val (dbl1, rng1) = double(rng)
+    val (dbl2, rng2) = double(rng1)
+    val (dbl3, rng3) = double(rng2)
+    ((dbl1, dbl2, dbl3), rng3)
+  }
 
   def ints(count: Int)(rng: RNG): (List[Int], RNG) = ???
 
