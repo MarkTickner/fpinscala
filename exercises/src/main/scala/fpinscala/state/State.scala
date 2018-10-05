@@ -63,7 +63,19 @@ object RNG {
     ((dbl1, dbl2, dbl3), rng3)
   }
 
-  def ints(count: Int)(rng: RNG): (List[Int], RNG) = ???
+  // Exercise 6.4: Write a function to generate a list of random integers
+  def ints(count: Int)(rng: RNG): (List[Int], RNG) = {
+
+    @annotation.tailrec
+    def go(count1: Int, list: List[Int] = List.empty)(rng1: RNG): List[Int] = count1 match {
+      case c if c > 0 =>
+        val (int, r) = rng1.nextInt
+        go(count1 - 1, int :: list)(r)
+      case _ => list
+    }
+
+    (go(count)(rng), rng)
+  }
 
   def map2[A,B,C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = ???
 

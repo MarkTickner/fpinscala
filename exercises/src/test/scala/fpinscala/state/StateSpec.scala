@@ -47,4 +47,13 @@ class StateSpec extends FlatSpec with Matchers {
     actualDouble3 should be > 0d
   }
 
+  "ints" should "generate a list of random integers" in {
+    val listSize = 5
+    val rng = Simple(123)
+    val (randomInts, _) = RNG.ints(count = 5)(rng)
+
+    randomInts.size shouldEqual listSize
+    randomInts.foreach(ri => randomInts.count(i => i != ri) shouldEqual (listSize - 1)) // Ensure items are unique
+  }
+
 }
